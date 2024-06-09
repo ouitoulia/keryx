@@ -1,0 +1,12 @@
+langcode: it
+status: true
+dependencies:
+  enforced:
+    module:
+      - keryx
+id: amministrazione_trasparente
+label: 'Amministrazione trasparente'
+description: 'Gruppo di migrazioni che importa i dati di amministrazione trasparente.'
+source_type: JSON
+module: null
+shared_configuration: null

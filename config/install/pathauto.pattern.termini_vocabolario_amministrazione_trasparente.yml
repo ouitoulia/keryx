@@ -1,0 +1,22 @@
+uuid: a8e11a37-9315-421a-92d9-d5f8ed30f38b
+langcode: it
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: termini_vocabolario_amministrazione_trasparente
+label: 'Termini vocabolario amministrazione trasparente'
+type: 'canonical_entities:taxonomy_term'
+pattern: 'amministrazione-trasparente/[term:parent:name]/[term:name]'
+selection_criteria:
+  254ad050-2853-41c0-a988-c7cf7050a549:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: 254ad050-2853-41c0-a988-c7cf7050a549
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      amministrazione_trasparente: amministrazione_trasparente
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -1,0 +1,11 @@
+uuid: e7d48635-66f0-4ba1-9ea8-feb897bcbcdc
+langcode: it
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.amministrazione_trasparente
+id: taxonomy_term.amministrazione_trasparente
+target_entity_type_id: taxonomy_term
+target_bundle: amministrazione_trasparente
+default_langcode: site_default
+language_alterable: true

@@ -5,8 +5,12 @@ package: "Ouitoulía"
 type: module
 core_version_requirement: ^10
 dependencies:
+  - drupal:taxonomy
+  - migrate_plus:migrate_plus
+  - migrate_tools:migrate_tools
   - ouitoulia:lexika
   - ouitoulia:themethla
+
 # Information added by GitHub Action packaging script on 2024-06-08
 version: '1.0.0'
 project: 'Keryx'
