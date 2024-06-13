@@ -49,10 +49,14 @@ source:
       name: parent_id
       label: 'Id del termine genitore della voce di tassonomia'
       selector: relationships/parent/data/id
-#    -
-#      name: uuid
-#      label: "L'UUID della voce"
-#      selector: uuid
+    -
+      name: obblighi_di_pubblicazione
+      label: Argomenti
+      selector: relationships/obblighi_di_pubblicazione/data
+    -
+      name: uuid
+      label: "L'UUID della voce"
+      selector: uuid
     -
       name: published
       label: 'Se la voce è pubblicata o meno'
@@ -63,10 +67,10 @@ source:
 process:
   tid: tid
   vid: type
-#  uuid:
-#    plugin: skip_on_empty
-#    source: uuid
-#    method: process
+  uuid:
+    plugin: skip_on_empty
+    source: uuid
+    method: process
   name: name
   parent_id:
     -
@@ -80,6 +84,16 @@ process:
     plugin: default_value
     default_value: 0
     source: '@parent_id'
+  field_obblighi_di_pubblicazione:
+    -
+      plugin: skip_on_empty
+      source: obblighi_di_pubblicazione
+      method: process
+    -
+      plugin: sub_process
+      source: obblighi_di_pubblicazione
+      process:
+        target_id: id
   weight:
     plugin: default_value
     source: weight
@@ -99,4 +113,6 @@ process:
     default_value: 1
 destination:
   plugin: 'entity:taxonomy_term'
-migration_dependencies: {  }
+migration_dependencies:
+  required:
+    - amministrazione_trasparente_obblighi
