@@ -1,0 +1,28 @@
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_obblighi_di_pubblicazione
+    - taxonomy.vocabulary.amministrazione_trasparente
+    - taxonomy.vocabulary.obblighi_di_pubblicazione
+id: taxonomy_term.amministrazione_trasparente.field_obblighi_di_pubblicazione
+field_name: field_obblighi_di_pubblicazione
+entity_type: taxonomy_term
+bundle: amministrazione_trasparente
+label: 'Obblighi di pubblicazione'
+description: "Seleziona l'eventuale obbligo di pubblicazione."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      obblighi_di_pubblicazione: obblighi_di_pubblicazione
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

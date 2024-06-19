@@ -1,0 +1,10 @@
+langcode: it
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.obblighi_di_pubblicazione
+id: taxonomy_term.obblighi_di_pubblicazione
+target_entity_type_id: taxonomy_term
+target_bundle: obblighi_di_pubblicazione
+default_langcode: site_default
+language_alterable: true

@@ -1,0 +1,18 @@
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_persona_responsabile
+    - taxonomy.vocabulary.obblighi_di_pubblicazione
+id: taxonomy_term.obblighi_di_pubblicazione.field_persona_responsabile
+field_name: field_persona_responsabile
+entity_type: taxonomy_term
+bundle: obblighi_di_pubblicazione
+label: 'Persona responsabile'
+description: 'Indica la persona o il ruolo del responsabile della pubblicazione. Lascia vuoto nel caso in cui la tua istituzione non ha questo obbligo di pubblicazione. Per la scuola in genere è sempre "Dirigente scolastico".'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

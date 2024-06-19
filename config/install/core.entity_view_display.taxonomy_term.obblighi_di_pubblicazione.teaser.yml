@@ -1,0 +1,28 @@
+langcode: it
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.teaser
+    - field.field.taxonomy_term.obblighi_di_pubblicazione.field_frequenza_aggiornamento
+    - field.field.taxonomy_term.obblighi_di_pubblicazione.field_link
+    - field.field.taxonomy_term.obblighi_di_pubblicazione.field_persona_responsabile
+    - taxonomy.vocabulary.obblighi_di_pubblicazione
+id: taxonomy_term.obblighi_di_pubblicazione.teaser
+targetEntityType: taxonomy_term
+bundle: obblighi_di_pubblicazione
+mode: teaser
+content:
+  field_persona_responsabile:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  description: true
+  field_frequenza_aggiornamento: true
+  field_link: true
+  langcode: true
+  search_api_excerpt: true

@@ -1,0 +1,21 @@
+langcode: it
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: termini_vocabolario_obblighi_di_pubblicazione
+label: 'Termini vocabolario obblighi di pubblicazione'
+type: 'canonical_entities:taxonomy_term'
+pattern: 'amministrazione-trasparente/obblighi-di-pubblicazione/[term:name]'
+selection_criteria:
+  34e00630-d83a-4aeb-b754-459574b6a6c8:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: 34e00630-d83a-4aeb-b754-459574b6a6c8
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      obblighi_di_pubblicazione: obblighi_di_pubblicazione
+selection_logic: and
+weight: -5
+relationships: {  }

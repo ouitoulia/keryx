@@ -1,0 +1,7 @@
+langcode: it
+status: true
+dependencies: {  }
+name: 'Obblighi di pubblicazione'
+vid: obblighi_di_pubblicazione
+description: 'Elenco degli obblighi di pubblicazione'
+weight: 0

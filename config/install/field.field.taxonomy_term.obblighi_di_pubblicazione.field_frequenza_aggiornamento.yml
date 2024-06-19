@@ -1,0 +1,18 @@
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_frequenza_aggiornamento
+    - taxonomy.vocabulary.obblighi_di_pubblicazione
+id: taxonomy_term.obblighi_di_pubblicazione.field_frequenza_aggiornamento
+field_name: field_frequenza_aggiornamento
+entity_type: taxonomy_term
+bundle: obblighi_di_pubblicazione
+label: 'Frequenza di aggiornamento'
+description: "La frequenza di aggiornamento dell'obbligo"
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
