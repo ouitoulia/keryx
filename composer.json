@@ -22,6 +22,7 @@
         "drupal/migrate_plus": "^6",
         "drupal/migrate_tools": "^6",
         "ouitoulia/lexika": ">=2.8",
+        "ouitoulia/skenografia": ">=2",
         "ouitoulia/themethla": ">=3.39"
     }
 }

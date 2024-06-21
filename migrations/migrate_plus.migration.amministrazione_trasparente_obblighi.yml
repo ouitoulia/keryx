@@ -53,10 +53,10 @@ source:
       name: persona_responsabile
       label: 'Persona responsabile'
       selector: attributes/persona_responsabile
-#    -
-#      name: uuid
-#      label: "L'UUID della voce"
-#      selector: uuid
+    -
+      name: uuid
+      label: "L'UUID della voce"
+      selector: uuid
     -
       name: published
       label: 'Se la voce è pubblicata o meno'
@@ -67,10 +67,10 @@ source:
 process:
   vid: type
   tid: tid
-#  uuid:
-#    plugin: skip_on_empty
-#    source: uuid
-#    method: process
+  uuid:
+    plugin: skip_on_empty
+    source: uuid
+    method: process
   name: name
   weight:
     plugin: default_value

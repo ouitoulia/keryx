@@ -1,0 +1,17 @@
+langcode: it
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.teaser
+    - field.field.taxonomy_term.amministrazione_trasparente.field_obblighi_di_pubblicazione
+    - taxonomy.vocabulary.amministrazione_trasparente
+id: taxonomy_term.amministrazione_trasparente.teaser
+targetEntityType: taxonomy_term
+bundle: amministrazione_trasparente
+mode: teaser
+content: {  }
+hidden:
+  description: true
+  field_obblighi_di_pubblicazione: true
+  langcode: true
+  search_api_excerpt: true
