@@ -3,7 +3,7 @@ description: "Keryx - Banditore è un modulo drupal che gestisce le funzionalit�
 package: "Ouitoulía"
 
 type: module
-core_version_requirement: ^10
+core_version_requirement: ^10 || ^11
 dependencies:
   - drupal:taxonomy
   - migrate_plus:migrate_plus

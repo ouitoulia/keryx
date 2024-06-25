@@ -1,4 +1,3 @@
-uuid: 1ba54142-959d-43fc-9f84-07c6f686ca17
 langcode: it
 status: true
 dependencies: {  }
@@ -6,3 +5,4 @@ name: 'Amministrazione trasparente'
 vid: amministrazione_trasparente
 description: 'Vocabolario che gestisce le voci di amministrazione trasparente'
 weight: 0
+new_revision: false
