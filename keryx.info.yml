@@ -1,13 +1,11 @@
 name: "Keryx"
-description: "Keryx - Banditore è un modulo drupal che gestisce le funzionalità di albo pretorio e amministrazione trasparente."
+description: "Keryx (banditore) è un modulo drupal che gestisce le funzionalità di albo pretorio e amministrazione trasparente."
 package: "Ouitoulía"
 
 type: module
 core_version_requirement: ^10 || ^11
 dependencies:
   - drupal:taxonomy
-  - migrate_plus:migrate_plus
-  - migrate_tools:migrate_tools
   - ouitoulia:lexika
   - ouitoulia:themethla
 
