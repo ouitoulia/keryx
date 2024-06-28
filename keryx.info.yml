@@ -1,5 +1,5 @@
 name: "Keryx"
-description: "Keryx (banditore) è un modulo drupal che gestisce le funzionalità di albo pretorio e amministrazione trasparente."
+description: "Keryx (banditore) è un modulo drupal che gestisce le funzionalità di albo pretorio e amministrazione trasparente aggiornato alla delibera ANAC n. 601 del 19 Dicembre 2023."
 package: "Ouitoulía"
 
 type: module

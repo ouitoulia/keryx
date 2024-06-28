@@ -3,6 +3,6 @@ status: true
 dependencies: {  }
 name: 'Obblighi di pubblicazione'
 vid: obblighi_di_pubblicazione
-description: 'Elenco degli obblighi di pubblicazione'
+description: 'Elenco degli obblighi di pubblicazione aggiornato alla delibera ANAC n. 601 del 19 Dicembre 2023.'
 weight: 0
 new_revision: false

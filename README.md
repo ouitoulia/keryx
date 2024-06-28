@@ -5,7 +5,8 @@
 ![Packagist Dependency Version](https://img.shields.io/packagist/dependency-v/ouitoulia/keryx/drupal/core-recommended?style=for-the-badge)
 ![Packagist Downloads](https://img.shields.io/packagist/dt/ouitoulia/keryx?style=for-the-badge)
 
-Keryx (banditore) è un modulo drupal che gestisce le funzionalità di albo pretorio e amministrazione trasparente.
+Keryx (banditore) è un modulo drupal che gestisce le funzionalità di albo pretorio e amministrazione trasparente
+aggiornato alla delibera ANAC n. 601 del 19 Dicembre 2023.
 
 ## Requisiti
 - Drupal: >= 10
