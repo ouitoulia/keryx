@@ -10,7 +10,7 @@ dependencies:
   - ouitoulia:themethla
 
 # Information added by GitHub Action packaging script on 2024-12-14
-version: '1.8.1'
+version: '1.8.2'
 project: 'Keryx'
-datestamp: 1734171620
-message: ' fix description typo'
+datestamp: 1734176515
+message: ' fix field order'
