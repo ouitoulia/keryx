@@ -3,6 +3,6 @@ status: true
 dependencies: {  }
 name: 'Amministrazione trasparente'
 vid: amministrazione_trasparente
-description: 'Vocabolario che gestisce le voci di amministrazione trasparente aggiornato alla delibera ANAC n. 601 del 19 Dicembre 2023.'
+description: 'Vocabolario che gestisce le voci di amministrazione trasparente aggiornato alla delibera ANAC n. 213 del 23 Aprile 2024'
 weight: 0
 new_revision: false
