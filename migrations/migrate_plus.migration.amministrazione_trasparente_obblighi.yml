@@ -65,8 +65,8 @@ source:
     tid:
       type: integer
 process:
-  vid: type
   tid: tid
+  vid: type
   uuid:
     plugin: skip_on_empty
     source: uuid
