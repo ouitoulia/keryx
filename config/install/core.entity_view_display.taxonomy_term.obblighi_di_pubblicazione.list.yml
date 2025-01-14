@@ -7,12 +7,6 @@ dependencies:
     - field.field.taxonomy_term.obblighi_di_pubblicazione.field_link
     - field.field.taxonomy_term.obblighi_di_pubblicazione.field_persona_responsabile
     - taxonomy.vocabulary.obblighi_di_pubblicazione
-  module:
-    - layout_builder
-third_party_settings:
-  layout_builder:
-    enabled: false
-    allow_custom: false
 id: taxonomy_term.obblighi_di_pubblicazione.list
 targetEntityType: taxonomy_term
 bundle: obblighi_di_pubblicazione
