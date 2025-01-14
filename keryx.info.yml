@@ -10,7 +10,7 @@ dependencies:
   - ouitoulia:themethla
 
 # Information added by GitHub Action packaging script on 2025-01-14
-version: '1.9.0'
+version: '1.9.1'
 project: 'Keryx'
-datestamp: 1736854133
-message: ' Add list display for obblighi tem'
+datestamp: 1736860343
+message: ' fix deps'
