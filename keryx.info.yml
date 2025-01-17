@@ -9,8 +9,8 @@ dependencies:
   - ouitoulia:lexika
   - ouitoulia:themethla
 
-# Information added by GitHub Action packaging script on 2025-01-14
-version: '1.9.1'
+# Information added by GitHub Action packaging script on 2025-01-17
+version: '1.10.0'
 project: 'Keryx'
-datestamp: 1736860343
-message: ' fix deps'
+datestamp: 1737135007
+message: ' add albo view'
