@@ -1,0 +1,12 @@
+ouitolia.admin:
+  title: 'Ouitoulía'
+  description: 'Impostazioni e configurazioni per Ouitoulía CMS.'
+  route_name: <none>
+  parent: system.admin_config
+  weight: 0
+
+keryx.settings:
+  title: "Keryx - Banditore"
+  description: 'Configurazioni per il modulo keryx che gestisce Amministrazione Trasparente e Albo online.'
+  parent: ouitolia.admin
+  route_name: keryx.settings

@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Implements hook_preprocess_taxonomy_term().
+ */
+function keryx_preprocess_taxonomy_term(&$variables) {
+  $term = $variables['term'];
+
+  // Controlla se l'ID del termine è 9559.
+  if ($term->id() == 9559) {
+    // Recupera il valore dalla configurazione.
+    $config = \Drupal::config('keryx.settings');
+    $variables['usr_ptpct_url'] = $config->get('usr_ptpct_url');
+  }
+}

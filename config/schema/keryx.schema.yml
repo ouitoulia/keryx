@@ -1,0 +1,7 @@
+keryx.settings:
+  type: config_object
+  label: 'Keryx settings'
+  mapping:
+    usr_ptpct_url:
+      type: string
+      label: 'Url al Piano Triennale della Prevenzione della Corruzione e per la Trasparenza'

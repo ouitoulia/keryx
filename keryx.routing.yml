@@ -1,0 +1,7 @@
+keryx.settings:
+  path: '/admin/config/ouitoulia/keryx'
+  defaults:
+    _form: '\Drupal\keryx\Form\KeryxSettingsForm'
+    _title: 'Impostazioni di keryx'
+  requirements:
+    _permission: 'administer configuration'
