@@ -11,12 +11,34 @@ function keryx_preprocess_page(array &$variables) {
 
     if ($term instanceof Term) {
       // Se il termine è 9403 = "Atti amministrativi generali"
-      // aggiungo al view delle circolari
+      // aggiungo la view delle circolari
       if ($term->id() == 9403) {
         $variables['page']['content']['view_circolari'] = [
           '#type' => 'view',
           '#name' => 'primo_livello_novita',
           '#display_id' => 'circolari',
+          '#arguments' => [],
+        ];
+      }
+
+      // Se il termine è 9447 = "Telefono e posta elettronica"
+      // aggiungo la della sede
+      if ($term->id() == 9445) {
+        $variables['page']['content']['view_secondo_livello_organizzazione'] = [
+          '#type' => 'view',
+          '#name' => 'secondo_livello_organizzazione',
+          '#display_id' => 'page_1',
+          '#arguments' => [],
+        ];
+      }
+
+      // Se il termine è 9447 = "Telefono e posta elettronica"
+      // aggiungo la della sede
+      if ($term->id() == 9447) {
+        $variables['page']['content']['view_amministrazione_trasparente_obblighi'] = [
+          '#type' => 'view',
+          '#name' => 'amministrazione_trasparente_obblighi',
+          '#display_id' => 'sede_legale',
           '#arguments' => [],
         ];
       }
