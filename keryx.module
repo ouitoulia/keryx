@@ -1,15 +1,49 @@
 <?php
 
+use Drupal\taxonomy\Entity\Term;
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function keryx_preprocess_page(array &$variables) {
+  if ( \Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical' ) {
+    $term = \Drupal::routeMatch()->getParameter('taxonomy_term');
+
+    if ($term instanceof Term) {
+      // Se il termine è 9403 = "Atti amministrativi generali"
+      // aggiungo al view delle circolari
+      if ($term->id() == 9403) {
+        $variables['page']['content']['view_circolari'] = [
+          '#type' => 'view',
+          '#name' => 'primo_livello_novita',
+          '#display_id' => 'circolari',
+          '#arguments' => [],
+        ];
+      }
+    }
+  }
+}
+
 /**
  * Implements hook_preprocess_taxonomy_term().
  */
 function keryx_preprocess_taxonomy_term(&$variables) {
   $term = $variables['term'];
 
-  // Controlla se l'ID del termine è 9559.
+  // Se il termine è 9559 = "Piano triennale per la prevenzione della corruzione e della trasparenza"
+  // aggiungo un pulsante con il collegamento al PTPCT dell'USR.
   if ($term->id() == 9559) {
-    // Recupera il valore dalla configurazione.
     $config = \Drupal::config('keryx.settings');
-    $variables['usr_ptpct_url'] = $config->get('usr_ptpct_url');
+    $usr_ptpct_url = $config->get('usr_ptpct_url') ?? 'https://www.istruzione.calabria.it/amministrazionetrasparente/anticorruzione/';
+
+    $variables['content']['btn_usr_ptpct'] = [
+      '#type' => 'markup',
+      '#markup' => trim(sprintf(
+        '<a class="btn btn-xs btn-primary my-4" href="%s" target="_blank" title="Vai al Piano triennale per la prevenzione della corruzione e della trasparenza dell\'Ufficio Scolastico Regionale">
+              Vai al Piano triennale per la prevenzione della corruzione e della trasparenza dell\'Ufficio Scolastico Regionale</a>',
+        htmlspecialchars($usr_ptpct_url, ENT_QUOTES, 'UTF-8')
+      )),
+      '#weight' => 100,
+    ];
   }
 }
