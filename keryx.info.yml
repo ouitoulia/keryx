@@ -9,8 +9,8 @@ dependencies:
   - ouitoulia:lexika
   - ouitoulia:themethla
 
-# Information added by GitHub Action packaging script on 2025-01-18
-version: '1.10.1'
+# Information added by GitHub Action packaging script on 2025-01-20
+version: '1.11.0'
 project: 'Keryx'
-datestamp: 1737206783
-message: ' fix have unmet dependencies field.field.node.documento.field_obbligo_di_pubblicazione'
+datestamp: 1737377940
+message: ' fix obblighi template'
