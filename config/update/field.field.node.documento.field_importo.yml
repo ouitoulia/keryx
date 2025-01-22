@@ -1,0 +1,23 @@
+uuid: 784ca761-1bf6-41df-ba1d-a2423010bafb
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_importo
+    - node.type.documento
+id: node.documento.field_importo
+field_name: field_importo
+entity_type: node
+bundle: documento
+label: Importo
+description: "Inserisci l'eventuale importo"
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0.0
+  max: null
+  prefix: ''
+  suffix: ' €'
+field_type: decimal

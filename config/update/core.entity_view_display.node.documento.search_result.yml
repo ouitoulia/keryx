@@ -1,3 +1,4 @@
+uuid: ef76fbe9-bcf9-4c33-b0c6-43ee71ffef11
 langcode: it
 status: true
 dependencies:
@@ -20,6 +21,7 @@ dependencies:
     - field.field.node.documento.field_finanziamenti
     - field.field.node.documento.field_frequenza
     - field.field.node.documento.field_galleria_immagini
+    - field.field.node.documento.field_importo
     - field.field.node.documento.field_link
     - field.field.node.documento.field_notizie
     - field.field.node.documento.field_obbligo_di_pubblicazione
@@ -108,6 +110,7 @@ hidden:
   field_finanziamenti: true
   field_frequenza: true
   field_galleria_immagini: true
+  field_importo: true
   field_link: true
   field_notizie: true
   field_obbligo_di_pubblicazione: true

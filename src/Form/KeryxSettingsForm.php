@@ -73,6 +73,12 @@ class KeryxSettingsForm extends ConfigFormBase {
       '#description' => $this->t("Inserisci il link al Piano Triennale della Prevenzione della Corruzione e per la Trasparenza del tuo USR"),
       '#default_value' => $config->get('usr_ptpct_url'),
     ];
+    $form['at']['perla_pa_url'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Link a Perla PA'),
+      '#description' => $this->t("Inserisci il link a Perla PA. Esempio: https://consulentipubblici.dfp.gov.it/?ente=DFP00017973"),
+      '#default_value' => $config->get('perla_pa_url'),
+    ];
 
     /* Impostazioni per Albo online */
     $form['albo'] = [
@@ -93,6 +99,7 @@ class KeryxSettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->config(static::SETTINGS)
       ->set('usr_ptpct_url', $form_state->getValue('usr_ptpct_url'))
+      ->set('perla_pa_url', $form_state->getValue('perla_pa_url'))
       ->save();
 
     parent::submitForm($form, $form_state);
