@@ -86,12 +86,22 @@ function keryx_preprocess_page(array &$variables) {
         ];
       }
 
-      // Se il termine è 9447 = "Organigramma - Illustrazione in forma semplificata"
+      // Se il termine è 9445 = "Organigramma - Illustrazione in forma semplificata"
       if ($term->id() == 9445) {
         $variables['page']['content']['view_secondo_livello_organizzazione'] = [
           '#type' => 'view',
-          '#name' => 'secondo_livello_organizzazione',
+          '#name' => 'secondo_livello_persone',
           '#display_id' => 'page_1',
+          '#arguments' => [],
+        ];
+      }
+
+      // Se il termine è 9446 = "Organigramma - Nomi dei dirigenti"
+      if ($term->id() == 9446) {
+        $variables['page']['content']['view_amministrazione_trasparente_obblighi'] = [
+          '#type' => 'view',
+          '#name' => 'amministrazione_trasparente_obblighi',
+          '#display_id' => 'dirigenti',
           '#arguments' => [],
         ];
       }
@@ -178,5 +188,24 @@ function keryx_preprocess_taxonomy_term(&$variables) {
       )),
       '#weight' => 100,
     ];
+  }
+}
+
+/**
+ * Implements hook_template_preprocess_views_view_table().
+ */
+function keryx_preprocess_views_view_table(&$variables): void {
+  if (isset($variables['view']) && $variables['view'] instanceof Drupal\views\ViewExecutable) {
+    $view_id = $variables['view']->id();
+    $view_display = $variables['view']->current_display;
+
+    if ($view_id == 'amministrazione_trasparente_obblighi' && $view_display == '9448_consulenti_collaboratori') {
+      $variables['anno'] = trim($variables['title']);
+
+      $config = \Drupal::config('keryx.settings');
+      $perla_pa_url = $config->get('perla_pa_url') ?? 'https://consulentipubblici.dfp.gov.it/?ente=DFP00017973';
+      $variables['perla_pa_url'] = htmlspecialchars($perla_pa_url, ENT_QUOTES, 'UTF-8');
+    }
+
   }
 }

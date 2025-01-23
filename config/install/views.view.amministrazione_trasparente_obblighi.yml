@@ -3,16 +3,22 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.card_big
+    - core.entity_view_mode.node.teaser
     - field.storage.node.field_data_fine
     - field.storage.node.field_data_inizio
     - field.storage.node.field_importo
     - field.storage.node.field_protocollo
+    - field.storage.node.field_ruolo_persona
     - node.type.documento
     - node.type.luogo
+    - node.type.persona
     - taxonomy.vocabulary.anni_scolastici
     - taxonomy.vocabulary.obblighi_di_pubblicazione
+    - taxonomy.vocabulary.ruoli_persona
   content:
     - 'taxonomy_term:obblighi_di_pubblicazione:e2f96cdd-79d4-4e68-aa18-2429517eb66e'
+    - 'taxonomy_term:ruoli_persona:914018e0-ab02-42f7-9e4a-2b01db615e91'
+    - 'taxonomy_term:ruoli_persona:9533fe20-a536-4433-88d3-010725212b20'
   module:
     - datetime
     - node
@@ -33,54 +39,7 @@ display:
     position: 0
     display_options:
       title: 'Sede Legale'
-      fields:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: title
-          plugin_id: field
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            make_link: false
-            absolute: false
-            word_boundary: false
-            ellipsis: false
-            strip_tags: false
-            trim: false
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: true
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
+      fields: {  }
       pager:
         type: some
         options:
@@ -204,7 +163,6 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - 'user.node_grants:view'
         - user.permissions
@@ -227,7 +185,7 @@ display:
           entity_type: node
           entity_field: created
           plugin_id: field
-          label: Anno
+          label: ''
           exclude: true
           alter:
             alter_text: true
@@ -639,7 +597,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: 'Dal {% if field_data_inizio is not empty %}{{ field_data_inizio }}{% else %}{{ created_1 }}{% endif %} al {% if field_data_fine is not empty %}{{ field_data_fine }}{% else %}--{% endif %}'
+            text: '<span class="d-block">Dal {% if field_data_inizio is not empty %}{{ field_data_inizio }}{% else %}{{ created_1 }}{% endif %}</span><span class="d-block">al {% if field_data_fine is not empty %}{{ field_data_fine }}{% else %}--{% endif %}</span>'
             make_link: false
             path: ''
             absolute: false
@@ -1082,7 +1040,7 @@ display:
             -
               field: created
               rendered: true
-              rendered_strip: false
+              rendered_strip: true
           row_class: ''
           default_row_class: true
           columns:
@@ -1091,6 +1049,8 @@ display:
             field_data_inizio: field_data_inizio
             created_1: created_1
             title: title
+            field_data_fine: field_data_fine
+            nothing: nothing
             field_importo: field_importo
             view_node: view_node
           default: '-1'
@@ -1126,6 +1086,18 @@ display:
             title:
               sortable: false
               default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_data_fine:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            nothing:
               align: ''
               separator: ''
               empty_column: false
@@ -1167,7 +1139,7 @@ display:
         filter_groups: false
         header: false
       css_class: ''
-      use_ajax: true
+      use_ajax: false
       display_description: 'Visualizza in tabella i consulenti e i collaboratori'
       header:
         entity_taxonomy_term:
@@ -1198,6 +1170,239 @@ display:
         - 'config:field.storage.node.field_data_inizio'
         - 'config:field.storage.node.field_importo'
         - 'config:field.storage.node.field_protocollo'
+  dirigenti:
+    id: dirigenti
+    display_title: Dirigenti
+    display_plugin: block
+    position: 3
+    display_options:
+      title: Dirigenti
+      fields:
+        field_ruolo_persona:
+          id: field_ruolo_persona
+          table: node__field_ruolo_persona
+          field: field_ruolo_persona
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      pager:
+        type: mini
+        options:
+          offset: 0
+          pagination_heading_level: h2
+          items_per_page: 24
+          total_pages: null
+          id: 0
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Voci per pagina'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- Tutto -'
+            offset: false
+            offset_label: Scostamento
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            persona: persona
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_ruolo_persona_target_id:
+          id: field_ruolo_persona_target_id
+          table: node__field_ruolo_persona
+          field: field_ruolo_persona_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            - 1701
+            - 1731
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: ruoli_persona
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: default
+        options:
+          grouping:
+            -
+              field: field_ruolo_persona
+              rendered: true
+              rendered_strip: true
+          row_class: ''
+          default_row_class: true
+          uses_fields: true
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: teaser
+      defaults:
+        title: false
+        css_class: false
+        pager: false
+        style: false
+        row: false
+        fields: false
+        filters: false
+        filter_groups: false
+      css_class: 'container-xxl my-5'
+      display_description: 'Visualizza i dirigenti'
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_ruolo_persona'
   sede_legale:
     id: sede_legale
     display_title: 'Sede legale'
@@ -1209,7 +1414,6 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - 'user.node_grants:view'
         - user.permissions
