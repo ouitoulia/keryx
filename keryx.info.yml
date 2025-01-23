@@ -9,8 +9,8 @@ dependencies:
   - ouitoulia:lexika
   - ouitoulia:themethla
 
-# Information added by GitHub Action packaging script on 2025-01-22
-version: '1.13.0'
+# Information added by GitHub Action packaging script on 2025-01-23
+version: '1.14.0'
 project: 'Keryx'
-datestamp: 1737544574
-message: ' add view consulenti e collaboratori'
+datestamp: 1737648737
+message: ' add organizzazione views'
