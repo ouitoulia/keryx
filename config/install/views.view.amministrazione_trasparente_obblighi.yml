@@ -2,8 +2,8 @@ langcode: it
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.card
     - core.entity_view_mode.node.card_big
-    - core.entity_view_mode.node.teaser
     - field.storage.node.field_data_fine
     - field.storage.node.field_data_inizio
     - field.storage.node.field_importo
@@ -1380,7 +1380,7 @@ display:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: teaser
+          view_mode: card
       defaults:
         title: false
         css_class: false
