@@ -209,28 +209,23 @@ function keryx_preprocess_taxonomy_term(&$variables) {
         . '&paramDatAnnScoRil=' . $anno_scolastico_corrente
         . '&tipoRicerca=S&paramCodScuUt=' . strtoupper($sede['codice_meccanografico']);
 
-      $variables['content']['btn_miur'] = [
-        '#type' => 'markup',
-        '#markup' => trim(sprintf(
-          '<p class="p-5 border w-75">Una volta aperto il "Collegamento con MIUR", seleziona il periodo per visualizzare i relativi dati.<br><a class="btn btn-xs btn-primary my-4" href="%s" target="_blank" title="Vai al Portale MIUR - Operazione Trasparenza">Collegamento con il Portale MIUR - Operazione Trasparenza</a></p>',
-          htmlspecialchars($link_miur, ENT_QUOTES, 'UTF-8')
-        )),
-        '#weight' => 100,
-      ];
-
       $link_unica = 'https://unica.istruzione.gov.it/cercalatuascuola/istituti/'
         . strtoupper($sede['codice_meccanografico']) . '/'
         . $site_name . '/personale/assenze/';
 
-      $variables['content']['btn_unica'] = [
+      $variables['content']['btn_miur'] = [
         '#type' => 'markup',
         '#markup' => trim(sprintf(
-          '<p class="mt-5 p-5 border w-75">Una volta aperto il "Collegamento con UNICA", seleziona il periodo per visualizzare i relativi dati.<br><a class="btn btn-xs btn-primary my-4" href="%s" target="_blank" title="Vai al Portale Unica">Collegamento con il Portale UNICA</a></p>',
+          '<p class="p-5 border w-75">
+                    Una volta aperto il collegamento con il portale MIUR o con il portale UNICA, seleziona il periodo per visualizzare i relativi dati.<br>
+                    <a class="btn btn-xs btn-primary my-4" href="%s" target="_blank" title="Vai al Portale MIUR - Operazione Trasparenza">Collegamento con il Portale MIUR - Operazione Trasparenza</a><br>
+                    <a class="btn btn-xs btn-primary my-4" href="%s" target="_blank" title="Vai al Portale Unica">Collegamento con il Portale UNICA</a>
+                  </p>',
+          htmlspecialchars($link_miur, ENT_QUOTES, 'UTF-8'),
           htmlspecialchars($link_unica, ENT_QUOTES, 'UTF-8')
         )),
         '#weight' => 100,
       ];
-
     }
   }
 
