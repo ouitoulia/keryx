@@ -9,8 +9,8 @@ dependencies:
   - ouitoulia:lexika
   - ouitoulia:themethla
 
-# Information added by GitHub Action packaging script on 2025-01-24
-version: '1.15.0'
+# Information added by GitHub Action packaging script on 2025-01-25
+version: '1.15.1'
 project: 'Keryx'
-datestamp: 1737735666
-message: ' add dirigenti e tassi di assenza'
+datestamp: 1737787093
+message: ' fix tassi di assenza'
