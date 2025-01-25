@@ -10,7 +10,7 @@ dependencies:
   - ouitoulia:themethla
 
 # Information added by GitHub Action packaging script on 2025-01-25
-version: '1.15.1'
+version: '1.15.2'
 project: 'Keryx'
-datestamp: 1737787093
-message: ' fix tassi di assenza'
+datestamp: 1737788057
+message: ' fix have unmet dependencies'
