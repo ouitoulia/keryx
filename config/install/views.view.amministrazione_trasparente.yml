@@ -929,7 +929,52 @@ display:
           value:
             min: ''
             max: ''
-            value: '^(9445$|9446$|9447$).*'
+            value: '^(9401$|9445$|9446$|9447$|9459$|9460$|9461$|9465$|9485$|9559$|9560$|9562$|9578$).*'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        tid_raw_1:
+          id: tid_raw_1
+          table: taxonomy_term_field_data
+          field: tid_raw
+          relationship: none
+          group_type: group
+          admin_label: 'Obblighi antecedenti al 31 Dicembre 2023'
+          entity_type: taxonomy_term
+          plugin_id: numeric
+          operator: not_regular_expression
+          value:
+            min: ''
+            max: ''
+            value: '^(9589$|9590$|9591$|9592$|9593$|9594$|9595$|9596$|9597$|9598$|9599$|9600$|9601$|9602$|9603$|9604$|9605$|9606$).*'
           group: 1
           exposed: false
           expose:

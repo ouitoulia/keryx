@@ -6,8 +6,11 @@ use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\node\Entity\Node;
+use Drupal\skenografia\Helper\Helper as SkenografiaHelper;
 
 class Helper {
+
+  private static $url_unica_scuola_in_chiaro = 'https://unica.istruzione.gov.it/cercalatuascuola';
 
   /**
    * Restituisce la Tipologia di dato (è una categoria di AT) a cui
@@ -28,6 +31,8 @@ class Helper {
   }
 
   /**
+   * Restituisce alcuni dati del luogo impostato come sede legale.
+   *
    * @return array
    */
   static function getDatiSedeLegale(): array {
@@ -53,6 +58,10 @@ class Helper {
       // Codice meccanografico
       if ($sede_legale->hasField('field_codice_meccanografico') && !$sede_legale->get('field_codice_meccanografico')->isEmpty()) {
         $dati['codice_meccanografico'] = $sede_legale->get('field_codice_meccanografico')->value;
+        $dati['url_unica_scuola_in_chiaro'] =
+          self::$url_unica_scuola_in_chiaro . '/istituti/'
+          . strtoupper($sede_legale->get('field_codice_meccanografico')->value) . '/'
+          . SkenografiaHelper::cleanTitleForUrl(\Drupal::config('system.site')->get('name'));
       }
 
       // Codice cuf
@@ -67,5 +76,49 @@ class Helper {
     }
 
     return $dati;
+  }
+
+  /**
+   * @return array
+   */
+  static function getPlessi(): array {
+    // ID del termine di tassonomia "Scuola/istituto"
+    $target_tid = 1306;
+
+    // Array per risultati
+    $plessi = [];
+
+    $query = \Drupal::entityQuery('node')
+      ->accessCheck(TRUE)
+      ->condition('type', 'struttura_organizzativa')
+      ->condition('field_tipologia_struttura.target_id', $target_tid)
+      ->sort('nid', 'ASC');
+
+    $nids = $query->execute();
+
+    if (!empty($nids)) {
+      $nodes = Node::loadMultiple($nids);
+
+      foreach ($nodes as $node) {
+        $codice_meccanografico_field = $node->get('field_codice_meccanografico');
+        $codice_meccanografico = ($codice_meccanografico_field && !$codice_meccanografico_field->isEmpty())
+          ? $codice_meccanografico_field->value
+          : NULL;
+
+        $url_unica_scuola_in_chiaro = $codice_meccanografico
+          ? self::$url_unica_scuola_in_chiaro . '/istituti/'
+              . strtoupper($codice_meccanografico) . '/'
+              . SkenografiaHelper::cleanTitleForUrl($node->getTitle())
+          : NULL;
+
+        $plessi[$node->id()] = [
+          'nome' => $node->getTitle(),
+          'codice_meccanografico' => $codice_meccanografico,
+          'url_unica_scuola_in_chiaro' => $url_unica_scuola_in_chiaro,
+        ];
+      }
+    }
+
+    return $plessi;
   }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\Core\Database\Database;
 use Drupal\keryx\Helper\Helper;
 use Drupal\skenografia\Helper\Helper as SkenografiaHelper;
 use Drupal\taxonomy\Entity\Term;
@@ -128,6 +129,16 @@ function keryx_preprocess_page(array &$variables) {
         unset($variables['page']['content']['skenografia_content']);
       }
 
+      // Se il termine è 9578 = "Elenco annuale dei progetti finanziati, con indicazione del CUP, importo totale del finanziamento, le fonti finanziarie, la data di avvio del progetto e lo stato di attuazione finanziario e procedurale"
+      if ($term->id() == 9578) {
+        $variables['page']['content']['view_amministrazione_trasparente_obblighi'] = [
+          '#type' => 'view',
+          '#name' => 'amministrazione_trasparente_obblighi',
+          '#display_id' => '9568_elenco_annuale_progetti',
+          '#arguments' => [],
+        ];
+      }
+
       // Aggiungo in fondo a tutte le pagine il link per tornare alla tipologia di dati
       $term_ids = Helper::getTipologiaDato($term);
       if (!empty($term_ids)) {
@@ -160,6 +171,7 @@ function keryx_preprocess_taxonomy_term(&$variables) {
   $term = $variables['term'];
 
   // Se il termine è 9559 = "Piano triennale per la prevenzione della corruzione e della trasparenza"
+  // Se il termine è 9560 = "Responsabile della prevenzione della corruzione e della trasparenza"
   // Se il termine è 9562 = "Relazione del responsabile della prevenzione della corruzione e della trasparenza"
   // aggiungo un pulsante con il collegamento al PTPCT dell'USR.
   if (in_array($term->id(), [9559, 9560, 9562]) && $variables['view_mode'] == 'full') {
@@ -169,8 +181,8 @@ function keryx_preprocess_taxonomy_term(&$variables) {
     $variables['content']['btn_usr_ptpct'] = [
       '#type' => 'markup',
       '#markup' => trim(sprintf(
-        '<a class="btn btn-xs btn-primary my-4" href="%s" target="_blank" title="Vai al Piano triennale per la prevenzione della corruzione e della trasparenza dell\'Ufficio Scolastico Regionale">
-              Vai al Piano triennale per la prevenzione della corruzione e della trasparenza dell\'Ufficio Scolastico Regionale</a>',
+        '<p class="p-5 border border-primary w-75"><a class="btn btn-xs btn-primary my-4" href="%s" target="_blank" title="Vai al Piano triennale per la prevenzione della corruzione e della trasparenza dell\'Ufficio Scolastico Regionale">
+              Vai al Piano triennale per la prevenzione della corruzione e della trasparenza dell\'Ufficio Scolastico Regionale</a></p>',
         htmlspecialchars($usr_ptpct_url, ENT_QUOTES, 'UTF-8')
       )),
       '#weight' => 100,
@@ -185,15 +197,57 @@ function keryx_preprocess_taxonomy_term(&$variables) {
     $variables['content']['btn_perla_pa'] = [
       '#type' => 'markup',
       '#markup' => trim(sprintf(
-        '<a class="btn btn-xs btn-primary my-4" href="%s" target="_blank" title="Vai al Portale Perla PA in una nuova finestra">Collegamento con la Banca Dati del sistema Perla PA</a>',
+        '<p class="p-5 border w-75"><a class="btn btn-xs btn-primary my-4" href="%s" target="_blank" title="Vai al Portale Perla PA in una nuova finestra">Collegamento con la Banca Dati del sistema Perla PA</a></p>',
         htmlspecialchars($perla_pa_url, ENT_QUOTES, 'UTF-8')
       )),
       '#weight' => 100,
     ];
   }
 
+  // Se il termine è 9459 = "Personale non a tempo indeterminato"
+  if ($term->id() == 9459 && $variables['view_mode'] == 'full') {
+    $plessi = Helper::getPlessi();
+
+    // collegamenti con unica per singolo plesso
+    $links_unica = '';
+
+    foreach ($plessi as $plesso) {
+      if ($plesso['url_unica_scuola_in_chiaro']) {
+        $links_unica .= sprintf(
+          '<a class="btn btn-xs btn-primary my-4" href="%s/personale/" title="Vai al Portale UNICA Scuola in chiaro" target="_blank">Collegamento con UNICA - Scuola in chiaro %s</a><br>',
+          $plesso['url_unica_scuola_in_chiaro'],
+          $plesso['nome']
+        );
+      }
+    }
+
+    $variables['content']['btn_unica'] = [
+      '#type' => 'markup',
+      '#markup' => trim(sprintf(
+        '<p class="p-5 border w-75">Una volta aperto il collegamento con il portale UNICA, scorri la pagina fino ai dati interessati.<br>%s</p>',
+        $links_unica
+      )),
+      '#weight' => 100,
+    ];
+  }
+
+  // Se il termine è 9460 = "Tassi di assenza trimestrali"
+  if ($term->id() == 9460 && $variables['view_mode'] == 'full') {
+    $sede = Helper::getDatiSedeLegale();
+    if (isset($sede['url_unica_scuola_in_chiaro']) && $sede['url_unica_scuola_in_chiaro']) {
+      $link_unica = $sede['url_unica_scuola_in_chiaro'] . '/finanza/';
+      $variables['content']['btn_unica'] = [
+        '#type' => 'markup',
+        '#markup' => trim(sprintf(
+          '<p class="p-5 border w-75"><a class="btn btn-xs btn-primary my-4" href="%s" target="_blank" title="Vai al Portale UNICA">Collegamento con il Portale UNICA - Scuola in chiaro</a></p>',
+          $link_unica
+        )),
+        '#weight' => 100,
+      ];
+    }
+  }
+
   // Se il termine è 9461 = "Tassi di assenza trimestrali"
-  // https://cercalatuascuola.istruzione.it/cercalatuascuola/istituti/RCIC825005/marvasi-vizzone/personale/assenze/
   if ($term->id() == 9461 && $variables['view_mode'] == 'full') {
     $sede = Helper::getDatiSedeLegale();
     if (isset($sede['codice_meccanografico']) && $sede['codice_meccanografico']) {
@@ -209,9 +263,7 @@ function keryx_preprocess_taxonomy_term(&$variables) {
         . '&paramDatAnnScoRil=' . $anno_scolastico_corrente
         . '&tipoRicerca=S&paramCodScuUt=' . strtoupper($sede['codice_meccanografico']);
 
-      $link_unica = 'https://unica.istruzione.gov.it/cercalatuascuola/istituti/'
-        . strtoupper($sede['codice_meccanografico']) . '/'
-        . $site_name . '/personale/assenze/';
+      $link_unica = $sede['url_unica_scuola_in_chiaro'] . '/personale/assenze/';
 
       $variables['content']['btn_miur'] = [
         '#type' => 'markup',
@@ -233,18 +285,43 @@ function keryx_preprocess_taxonomy_term(&$variables) {
   if ($term->id() == 9465 && $variables['view_mode'] == 'full') {
     $sede = Helper::getDatiSedeLegale();
     if (isset($sede['codice_fiscale']) && $sede['codice_fiscale']) {
+      $url_aran = 'https://www.contrattintegrativipa.it/ci/?enteCodiceFiscale=' . $sede['codice_fiscale'];
       $variables['content']['btn_aran'] = [
         '#type' => 'markup',
         '#markup' => trim(sprintf(
-          '<p class="p-5 border w-75">Una volta aperto il "Collegamento con ARAN", cerca i contratti di questo istituto usando il seguente codice fiscale: <strong>%s</strong><br><a class="btn btn-xs btn-primary my-4" href="https://www.contrattintegrativipa.it/ci/?enteCodiceFiscale=%s" target="_blank" title="Vai al Portale ARAN - Banca Dati Contratti Integrativi">Collegamento con ARAN - Banca Dati Contratti Integrativi</a></p>',
+          '<p class="p-5 border w-75">Una volta aperto il "Collegamento con ARAN", cerca i contratti di questo istituto usando il seguente codice fiscale: <strong>%s</strong><br><a class="btn btn-xs btn-primary my-4" href="%s" target="_blank" title="Vai al Portale ARAN - Banca Dati Contratti Integrativi">Collegamento con ARAN - Banca Dati Contratti Integrativi</a></p>',
           htmlspecialchars($sede['codice_fiscale'], ENT_QUOTES, 'UTF-8'),
-          htmlspecialchars($sede['codice_fiscale'], ENT_QUOTES, 'UTF-8')
+          htmlspecialchars($url_aran, ENT_QUOTES, 'UTF-8')
         )),
         '#weight' => 100,
       ];
     }
   }
 
+}
+
+function keryx_preprocess_views_view(&$variables) {
+  if (
+    isset($variables['id'])
+    && $variables['id'] == 'amministrazione_trasparente_obblighi'
+    && $variables['display_id'] == '9568_elenco_annuale_progetti'
+  ) {
+    $query = Database::getConnection()->select('node__field_importo_finanziamento', 'f');
+    $query->addExpression('SUM(f.field_importo_finanziamento_value)', 'somma');
+    $query->join('node_field_data', 'n', 'f.entity_id = n.nid');
+    $query->condition('n.type', 'finanziamento'); // Ricordarsi di filtrare per tipo
+    $query->condition('n.status', 1); // solo i nodi pubblicati
+    $result = $query->execute()->fetchField();
+
+    $variables['volume_finanziato'] = $result !== NULL ? (float) $result : 0;
+
+    $variables['header']['result']['#markup'] =
+      str_replace(
+        '@volume_finanziato',
+        number_format($variables['volume_finanziato'], 2, ',', ' '),
+        $variables['header']['result']['#markup']
+      );
+  }
 }
 
 /**
