@@ -4,6 +4,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.card
     - core.entity_view_mode.node.card_big
+    - core.entity_view_mode.node.teaser
     - field.storage.node.field_codice_cup
     - field.storage.node.field_data_fine
     - field.storage.node.field_data_inizio
@@ -17,13 +18,16 @@ dependencies:
     - node.type.finanziamento
     - node.type.luogo
     - node.type.persona
+    - node.type.struttura_organizzativa
     - taxonomy.vocabulary.anni_scolastici
     - taxonomy.vocabulary.obblighi_di_pubblicazione
     - taxonomy.vocabulary.ruoli_persona
+    - taxonomy.vocabulary.tipologia_strutture
   content:
     - 'taxonomy_term:obblighi_di_pubblicazione:e2f96cdd-79d4-4e68-aa18-2429517eb66e'
     - 'taxonomy_term:ruoli_persona:914018e0-ab02-42f7-9e4a-2b01db615e91'
     - 'taxonomy_term:ruoli_persona:9533fe20-a536-4433-88d3-010725212b20'
+    - 'taxonomy_term:tipologia_strutture:c289aefc-9b85-40b0-92b2-ac975a32624e'
   module:
     - datetime
     - node
@@ -67,7 +71,12 @@ display:
       cache:
         type: tag
         options: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          plugin_id: text
       sorts:
         created:
           id: created
@@ -1146,20 +1155,7 @@ display:
       css_class: ''
       use_ajax: false
       display_description: 'Visualizza in tabella i consulenti e i collaboratori'
-      header:
-        entity_taxonomy_term:
-          id: entity_taxonomy_term
-          table: views
-          field: entity_taxonomy_term
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: entity
-          empty: true
-          target: e2f96cdd-79d4-4e68-aa18-2429517eb66e
-          view_mode: full
-          tokenize: true
-          bypass_access: false
+      header: {  }
       display_extenders: {  }
     cache_metadata:
       max-age: -1
@@ -1175,11 +1171,171 @@ display:
         - 'config:field.storage.node.field_data_inizio'
         - 'config:field.storage.node.field_importo'
         - 'config:field.storage.node.field_protocollo'
+  9483_recapiti_ufficio_responsabile:
+    id: 9483_recapiti_ufficio_responsabile
+    display_title: "9483 - Recapiti dell'ufficio responsabile"
+    display_plugin: block
+    position: 4
+    display_options:
+      title: "Recapiti dell'ufficio responsabile"
+      pager:
+        type: mini
+        options:
+          offset: 0
+          pagination_heading_level: h2
+          items_per_page: 10
+          total_pages: null
+          id: 0
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Voci per pagina'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- Tutto -'
+            offset: false
+            offset_label: Scostamento
+      empty: {  }
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            struttura_organizzativa: struttura_organizzativa
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_tipologia_struttura_target_id:
+          id: field_tipologia_struttura_target_id
+          table: node__field_tipologia_struttura
+          field: field_tipologia_struttura_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            1305: 1305
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: tipologia_strutture
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: default
+        options:
+          row_class: ''
+          default_row_class: false
+          uses_fields: false
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: teaser
+      defaults:
+        empty: false
+        title: false
+        pager: false
+        style: false
+        row: false
+        filters: false
+        filter_groups: false
+      display_description: "Visualizza i recapiti di del responsabile delle dichiarazioni sostitutive e acquisizione d'ufficio dei dati"
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
   9568_elenco_annuale_progetti:
     id: 9568_elenco_annuale_progetti
     display_title: '9568 - Elenco annuale dei progetti finanziati'
     display_plugin: block
-    position: 4
+    position: 5
     display_options:
       title: 'Elenco annuale dei progetti finanziati'
       fields:

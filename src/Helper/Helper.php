@@ -22,7 +22,7 @@ class Helper {
    * @throws InvalidPluginDefinitionException
    * @throws PluginNotFoundException
    */
-  static function getTipologiaDato(Term $term): array|int {
+  public static function getTipologiaDato(Term $term): array|int {
     $query = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->getQuery();
     $query->accessCheck(TRUE);
     $query->condition('vid', 'amministrazione_trasparente');
@@ -35,7 +35,7 @@ class Helper {
    *
    * @return array
    */
-  static function getDatiSedeLegale(): array {
+  public static function getDatiSedeLegale(): array {
     // Il nodo di tipo 'luogo' con 'field_sede_legale' true
     $query = \Drupal::entityQuery('node')
       ->accessCheck(TRUE)
@@ -81,7 +81,7 @@ class Helper {
   /**
    * @return array
    */
-  static function getPlessi(): array {
+  public static function getPlessi(): array {
     // ID del termine di tassonomia "Scuola/istituto"
     $target_tid = 1306;
 
@@ -121,4 +121,22 @@ class Helper {
 
     return $plessi;
   }
+
+  /**
+   * Se si tratta di un termine di tassonomia di tipo obblighi_di_pubblicazione
+   * viene restituito il termine, altrimenti false
+   *
+   * @return Term|FALSE
+   */
+  public static function getObbligoTerm(): Term|FALSE {
+    if ( \Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical' ) {
+      /** @var Term $term */
+      $term = \Drupal::routeMatch()->getParameter('taxonomy_term');
+      if ($term instanceof Term && $term->bundle() == 'obblighi_di_pubblicazione') {
+        return $term;
+      }
+    }
+    return FALSE;
+  }
+
 }

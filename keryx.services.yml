@@ -1,0 +1,7 @@
+services:
+  Drupal\keryx\Hook\BreadcrumbHooks:
+    class: Drupal\keryx\Hook\BreadcrumbHooks
+    autowire: true
+  Drupal\keryx\Hook\ObbligoHooks:
+    class: Drupal\keryx\Hook\ObbligoHooks
+    autowire: true

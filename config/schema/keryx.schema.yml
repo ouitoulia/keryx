@@ -5,3 +5,7 @@ keryx.settings:
     usr_ptpct_url:
       type: string
       label: 'Url al Piano Triennale della Prevenzione della Corruzione e per la Trasparenza'
+    perla_pa_url:
+      type: string
+      label: 'Url alla piattaforma Perla PA'
+
