@@ -22,7 +22,7 @@ class ObbligoHooks {
    *
    * @var array[]
    */
-  private const array viewsToPage  = [
+  private array $viewsToPage = [
     // Il termine è 9403 = "Atti amministrativi generali"
     9403 => [
       '#type' => 'view',
@@ -71,7 +71,14 @@ class ObbligoHooks {
       '#name' => 'amministrazione_trasparente_obblighi',
       '#display_id' => '9568_elenco_annuale_progetti',
       '#arguments' => [],
-    ]
+    ],
+    // Il termine è 9580 = "Documenti di gara"
+    9580 => [
+      '#type' => 'view',
+      '#name' => 'amministrazione_trasparente_obblighi',
+      '#display_id' => '9580_documenti_gara',
+      '#arguments' => [],
+    ],
   ];
 
   /**
@@ -80,7 +87,7 @@ class ObbligoHooks {
    *
    * @var array
    */
-  private const array hideViews = [9445, 9446, 9447, 9448, 9483, 9578];
+  private array $hideViews = [9445, 9446, 9447, 9448, 9483, 9578, 9580];
 
   /**
    * Messaggi personalizzati nel caso in cui una particolare
@@ -88,8 +95,8 @@ class ObbligoHooks {
    *
    * @var array
    */
-  private const array emptyMessages = [
-    0 => ["title" => "Nessun dato", "content" => "L'istituto non possiede o non ha ancora disponibili i dati da pubblicare."],
+  private array $emptyMessages = [
+    0 => ["title" => "Nessun dato", "content" => "L'istituto non possiede dati da pubblicare in merito."],
     9441 => ["title" => "Nessuna sanzione", "content" => "L'istituto non ha ricevuto sanzioni."],
     9527 => ["title" => "Nessun immobile", "content" => "L'istituto non possiede e/o detiene immobili."],
     9528 => ["title" => "Nessun canone", "content" => "L'istituto non versa o percepisce alcun canone di affitto o locazione."],
@@ -103,15 +110,15 @@ class ObbligoHooks {
    * @return void
    */
   #[Hook('preprocess_page')]
-  public static function preprocessPage(&$variables): void {
+  public function preprocessPage(&$variables): void {
     $term = Helper::getObbligoTerm();
     if ($term) {
       // Aggiungo una vista custom subito dopo la view taxonomy_term,
       // in seguito taxonomy_term verrà nascosta (vedi preprocessViewsView)
-      self::addViewsToPage($variables, $term);
+      $this->addViewsToPage($variables, $term);
 
       try {
-        self::addBackLinkToTipologiaDati($variables, $term);
+        $this->addBackLinkToTipologiaDati($variables, $term);
       } catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
         \Drupal::messenger()->addError($e->getMessage());
       }
@@ -125,10 +132,10 @@ class ObbligoHooks {
    * @return void
    */
   #[Hook('preprocess_taxonomy_term')]
-  public static function preprocessTaxonomyTerm(&$variables): void {
+  public function preprocessTaxonomyTerm(&$variables): void {
     $term = Helper::getObbligoTerm();
     if ($term) {
-      self::addLinksToObbligo($variables, $term);
+      $this->addLinksToObbligo($variables, $term);
     }
   }
 
@@ -140,28 +147,28 @@ class ObbligoHooks {
    * @throws \Exception
    */
   #[Hook('preprocess_views_view')]
-  public static function preprocessViewsView(&$variables): void {
+  public function preprocessViewsView(&$variables): void {
     $term = Helper::getObbligoTerm();
     if ($term) {
       // Nel caso in cui la vista è riscritta, rimuovo i risultati da taxonomy_term
-      if ($variables['id'] == 'taxonomy_term' && in_array($term->id(), self::hideViews)) {
+      if ($variables['id'] == 'taxonomy_term' && in_array($term->id(), $this->hideViews)) {
         $variables['rows'] = $variables['pager'] = [];
       }
 
       if ($term->id() == 9578) {
-        self::addVolumeFinanziatoTo9578ViewsTerm($variables);
+        $this->addVolumeFinanziatoTo9578ViewsTerm($variables);
       }
 
-      self::setEmptyMessage($variables, $term);
+      $this->setEmptyMessage($variables, $term);
     }
   }
 
   #[Hook('preprocess_views_view_table')]
-  public static function preprocessViewsViewTable(&$variables): void {
+  public function preprocessViewsViewTable(&$variables): void {
     $term = Helper::getObbligoTerm();
     if ($term) {
       if ($term->id() == 9448) {
-        self::addARANLinkToVariables($variables);
+        $this->addARANLinkToVariables($variables);
       }
     }
   }
@@ -173,9 +180,9 @@ class ObbligoHooks {
    * @param Term $term
    * @return void
    */
-  private static function addViewsToPage(&$variables, Term $term): void {
-    if (array_key_exists($term->id(), self::viewsToPage)) {
-      $variables['page']['content']['custom_view'] = self::viewsToPage[$term->id()];
+  private function addViewsToPage(&$variables, Term $term): void {
+    if (array_key_exists($term->id(), $this->viewsToPage)) {
+      $variables['page']['content']['custom_view'] = $this->viewsToPage[$term->id()];
     }
   }
 
@@ -189,7 +196,7 @@ class ObbligoHooks {
    * @throws InvalidPluginDefinitionException
    * @throws PluginNotFoundException
    */
-  private static function addBackLinkToTipologiaDati(&$variables, Term $term): void {
+  private function addBackLinkToTipologiaDati(&$variables, Term $term): void {
     $term_ids = Helper::getTipologiaDato($term);
     if (!empty($term_ids)) {
       // Recupero le associazioni (dovrebbe esserci un solo elemento nell'array)
@@ -221,7 +228,7 @@ class ObbligoHooks {
    * @return void
    * @throws \Exception
    */
-  private static function addVolumeFinanziatoTo9578ViewsTerm(&$variables): void {
+  private function addVolumeFinanziatoTo9578ViewsTerm(&$variables): void {
     if (
       isset($variables['id'])
       && $variables['id'] == 'amministrazione_trasparente_obblighi'
@@ -253,14 +260,14 @@ class ObbligoHooks {
    * @param Term $term
    * @return void
    */
-  private static function setEmptyMessage(&$variables, Term $term): void {
+  private function setEmptyMessage(&$variables, Term $term): void {
     if (
       $term->get('field_persona_responsabile')->value // Se la scuola ha pertinenza con l'obbligo
       && count($variables['rows']) == 0 // e le righe della vista sono vuote
-      && !array_key_exists($term->id(), self::viewsToPage) // e non è tra le viste riscritte
+      && !array_key_exists($term->id(), $this->viewsToPage) // e non è tra le viste riscritte
       && !preg_match('/\b(?:Collegamento|Link|Portale|esterno)\b/i', $term->get('field_persona_responsabile')->value) // escludo i termini con collegamento o link
     ) {
-      $message = array_key_exists($term->id(), self::emptyMessages) ? self::emptyMessages[$term->id()] : self::emptyMessages[0];
+      $message = array_key_exists($term->id(), $this->emptyMessages) ? $this->emptyMessages[$term->id()] : $this->emptyMessages[0];
       $markup = '<div class="container-xxl text-center"><h2 class="mt-5 fw-lighter">'.$message["title"].'</h2><p class="lead">'.$message["content"].'</p></div>';
       $variables['empty']['message'] = ['#type' => 'markup', '#markup' => $markup];
     }
@@ -273,7 +280,7 @@ class ObbligoHooks {
    * @param false|Term $term
    * @return void
    */
-  private static function addLinksToObbligo(&$variables, false|Term $term): void {
+  private function addLinksToObbligo(&$variables, false|Term $term): void {
     $config = \Drupal::config('keryx.settings');
     $sede = Helper::getDatiSedeLegale();
 
@@ -399,6 +406,22 @@ class ObbligoHooks {
         ];
       }
     }
+
+    // Se il termine è 9580 = "Documenti di gara"
+    elseif ($term->id() == 9580 && $variables['view_mode'] == 'full') {
+      if (isset($sede['codice_fiscale']) && $sede['codice_fiscale']) {
+        $url_bdncp = 'https://dati.anticorruzione.it/superset/dashboard/dettaglio_sa/?sa=' . $sede['codice_fiscale'];
+        $variables['content']['btn_bdncp'] = [
+          '#type' => 'markup',
+          '#markup' => trim(sprintf(
+            '<p class="p-5 border w-75">Una volta aperto il "Collegamento con <abbr title="Banca Dati Nazionale Contratti Pubblici">BDNCP</abbr>", è possibile analizzare e/o esportare tutti dati, compresi i dati storici.<br><a class="btn btn-xs btn-primary my-4" href="%s" target="_blank" title="Vai al Portale BDNCP - Banca Dati Nazionale dei Contratti Pubblici">Collegamento con BDNCP - Banca Dati Nazionale dei Contratti Pubblici</a></p>',
+            htmlspecialchars($url_bdncp, ENT_QUOTES, 'UTF-8')
+          )),
+          '#weight' => 100,
+        ];
+      }
+    }
+
   }
 
   /**
@@ -407,7 +430,7 @@ class ObbligoHooks {
    * @param $variables
    * @return void
    */
-  private static function addARANLinkToVariables(&$variables): void {
+  private function addARANLinkToVariables(&$variables): void {
     if (isset($variables['view']) && ($variables['view'] instanceof ViewExecutable)) {
       $view_id = $variables['view']->id();
       $view_display = $variables['view']->current_display;

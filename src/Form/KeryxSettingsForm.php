@@ -79,6 +79,12 @@ class KeryxSettingsForm extends ConfigFormBase {
       '#description' => $this->t("Inserisci il link a Perla PA. Esempio: https://consulentipubblici.dfp.gov.it/?ente=DFP00017973"),
       '#default_value' => $config->get('perla_pa_url'),
     ];
+    $form['at']['codice_ausa'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Codice AUSA'),
+      '#description' => $this->t("Inserisci il Codice Unico delle Stazioni Appaltanti assegnatoti da ANAC."),
+      '#default_value' => $config->get('codice_ausa'),
+    ];
 
     /* Impostazioni per Albo online */
     $form['albo'] = [
@@ -100,6 +106,7 @@ class KeryxSettingsForm extends ConfigFormBase {
     $this->config(static::SETTINGS)
       ->set('usr_ptpct_url', $form_state->getValue('usr_ptpct_url'))
       ->set('perla_pa_url', $form_state->getValue('perla_pa_url'))
+      ->set('codice_ausa', $form_state->getValue('codice_ausa'))
       ->save();
 
     parent::submitForm($form, $form_state);

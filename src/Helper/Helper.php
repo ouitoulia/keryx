@@ -11,6 +11,7 @@ use Drupal\skenografia\Helper\Helper as SkenografiaHelper;
 class Helper {
 
   private static $url_unica_scuola_in_chiaro = 'https://unica.istruzione.gov.it/cercalatuascuola';
+  private const url_sa_bdncp = 'https://dati.anticorruzione.it/superset/dashboard/dettaglio_sa/?sa=';
 
   /**
    * Restituisce la Tipologia di dato (è una categoria di AT) a cui

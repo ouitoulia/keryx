@@ -8,4 +8,7 @@ keryx.settings:
     perla_pa_url:
       type: string
       label: 'Url alla piattaforma Perla PA'
+    codice_ausa:
+      type: string
+      label: 'Codice AUSA'
 

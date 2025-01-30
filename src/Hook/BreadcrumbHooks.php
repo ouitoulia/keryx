@@ -22,7 +22,7 @@ class BreadcrumbHooks {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   #[Hook('preprocess_breadcrumb')]
-  public static function preprocessBreadcrumb(&$variables): void {
+  public function preprocessBreadcrumb(&$variables): void {
     // Assegno e controllo se è un termine
     if ($term = Helper::getObbligoTerm()) {
 
@@ -69,6 +69,9 @@ class BreadcrumbHooks {
 
           // Aggiungo l'ultimo elemento (che è la pagina corrente)
           $new_breadcrumb[] = end($variables['breadcrumb']);
+
+          // Aggiungo l'ancora che porta direttamente l'utente al menu di AT
+          $new_breadcrumb[1]['url'] = $new_breadcrumb[1]['url'] . '#sezioni-liv-1-macro-famiglie';
 
           // Sovrascrivo con la nuova breadcrumb
           $variables['breadcrumb'] = $new_breadcrumb;
