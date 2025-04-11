@@ -9,8 +9,8 @@ dependencies:
   - ouitoulia:lexika
   - ouitoulia:themethla
 
-# Information added by GitHub Action packaging script on 2025-01-30
-version: '1.18.0'
+# Information added by GitHub Action packaging script on 2025-04-11
+version: '1.19.0'
 project: 'Keryx'
-datestamp: 1738235550
-message: ' review documenti di gara'
+datestamp: 1744383195
+message: ' fix block order'
