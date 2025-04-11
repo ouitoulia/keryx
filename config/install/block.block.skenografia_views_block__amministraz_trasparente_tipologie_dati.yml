@@ -11,7 +11,7 @@ dependencies:
 id: skenografia_views_block__amministraz_trasparente_tipologie_dati
 theme: skenografia
 region: content
-weight: -20
+weight: -33
 provider: null
 plugin: 'views_block:amministrazione_trasparente-tipologie_dati'
 settings:
