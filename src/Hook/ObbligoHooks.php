@@ -407,6 +407,20 @@ class ObbligoHooks {
       }
     }
 
+    // Se il termine è 9481 = "Tipologie di procedimento"
+    elseif ($term->id() == 9481 && $variables['view_mode'] == 'full') {
+      $url_servizi = '/servizi';
+
+      $variables['content']['btn_perla_pa'] = [
+        '#type' => 'markup',
+        '#markup' => trim(sprintf(
+          '<p class="p-5 border w-75"><a class="btn btn-xs btn-primary my-4" href="%s" target="_blank" title="Vai ai servizi">Vai ai servizi che offre la scuola</a></p>',
+          htmlspecialchars($url_servizi, ENT_QUOTES, 'UTF-8')
+        )),
+        '#weight' => 100,
+      ];
+    }
+
     // Se il termine è 9580 = "Documenti di gara"
     elseif ($term->id() == 9580 && $variables['view_mode'] == 'full') {
       if (isset($sede['codice_fiscale']) && $sede['codice_fiscale']) {
