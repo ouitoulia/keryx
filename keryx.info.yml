@@ -10,7 +10,7 @@ dependencies:
   - ouitoulia:themethla
 
 # Information added by GitHub Action packaging script on 2025-04-23
-version: '1.20.0'
+version: '1.20.1'
 project: 'Keryx'
-datestamp: 1745399771
-message: ' fix obbligo Tipologie di procedimento'
+datestamp: 1745399960
+message: ' fix target url Tipologie di procedimento'
