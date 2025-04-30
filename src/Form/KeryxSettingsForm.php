@@ -70,27 +70,33 @@ class KeryxSettingsForm extends ConfigFormBase {
     $form['at']['usr_ptpct_url'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Piano Triennale della Prevenzione della Corruzione e per la Trasparenza'),
-      '#description' => $this->t("Inserisci il link al Piano Triennale della Prevenzione della Corruzione e per la Trasparenza del tuo USR"),
+      '#description' => $this->t('Inserisci il link al Piano Triennale della Prevenzione della Corruzione e per la Trasparenza del tuo USR'),
       '#default_value' => $config->get('usr_ptpct_url'),
     ];
     $form['at']['perla_pa_url'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Link a Perla PA'),
-      '#description' => $this->t("Inserisci il link a Perla PA. Esempio: https://consulentipubblici.dfp.gov.it/?ente=DFP00017973"),
+      '#description' => $this->t('Inserisci il link a Perla PA. Esempio: https://consulentipubblici.dfp.gov.it/?ente=DFP00017973'),
       '#default_value' => $config->get('perla_pa_url'),
     ];
     $form['at']['codice_ausa'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Codice AUSA'),
-      '#description' => $this->t("Inserisci il Codice Unico delle Stazioni Appaltanti assegnatoti da ANAC."),
+      '#description' => $this->t('Inserisci il Codice Unico delle Stazioni Appaltanti assegnatoti da ANAC.'),
       '#default_value' => $config->get('codice_ausa'),
+    ];
+    $form['at']['tassi_assenza_trimestrali_auto'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Gestione automatica dei tassi di assenza trimestrali'),
+      '#description' => $this->t('Se selezionato visualizza i link ai portali esterni del MIM e del portale unica.'),
+      '#default_value' => $config->get('tassi_assenza_trimestrali_auto'),
     ];
 
     /* Impostazioni per Albo online */
     $form['albo'] = [
       '#type' => 'details',
       '#title' => t('Albo online'),
-      '#description' => $this->t("Impostazioni per Albo online"),
+      '#description' => $this->t('Impostazioni per Albo online'),
       '#open' => FALSE,
       '#group' => 'keryx',
       '#weight' => 0,
@@ -107,6 +113,7 @@ class KeryxSettingsForm extends ConfigFormBase {
       ->set('usr_ptpct_url', $form_state->getValue('usr_ptpct_url'))
       ->set('perla_pa_url', $form_state->getValue('perla_pa_url'))
       ->set('codice_ausa', $form_state->getValue('codice_ausa'))
+      ->set('codice_ausa', $form_state->getValue('tassi_assenza_trimestrali_auto'))
       ->save();
 
     parent::submitForm($form, $form_state);

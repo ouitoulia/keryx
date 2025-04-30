@@ -359,7 +359,7 @@ class ObbligoHooks {
     }
 
     // Se il termine è 9461 = "Tassi di assenza trimestrali"
-    elseif ($term->id() == 9461 && $variables['view_mode'] == 'full') {
+    elseif ($term->id() == 9461 && $variables['view_mode'] == 'full' && $config->get('tassi_assenza_trimestrali_auto')) {
       if (isset($sede['codice_meccanografico']) && $sede['codice_meccanografico']) {
         $site_name = rawurlencode(\Drupal::config('system.site')->get('name'));
         $anno_scolastico_corrente = SkenografiaHelper::getAnnoScolastico([
