@@ -9,8 +9,8 @@ dependencies:
   - ouitoulia:lexika
   - ouitoulia:themethla
 
-# Information added by GitHub Action packaging script on 2025-04-30
+# Information added by GitHub Action packaging script on 2025-05-02
 version: '1.21.0'
 project: 'Keryx'
-datestamp: 1745986306
-message: ' fix target url Tipologie di procedimento'
+datestamp: 1746192795
+message: ' fix vista di selezione obblighi'
