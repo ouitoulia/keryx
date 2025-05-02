@@ -6,6 +6,7 @@ use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Url;
+use Drupal\Core\Link;
 use Drupal\keryx\Helper\Helper;
 use Drupal\skenografia\Helper\Helper as SkenografiaHelper;
 use Drupal\Core\Hook\Attribute\Hook;
@@ -58,6 +59,13 @@ class ObbligoHooks {
       '#display_id' => '9448_consulenti_collaboratori',
       '#arguments' => [],
     ],
+    // Il termine è 9462 = "Incarichi conferiti e autorizzati ai dipendenti (dirigenti e non dirigenti)"
+    9462 => [
+      '#type' => 'view',
+      '#name' => 'amministrazione_trasparente_obblighi',
+      '#display_id' => '9462_incarichi_dipendenti',
+      '#arguments' => [],
+    ],
     // Il termine è 9483 = "Recapiti dell'ufficio responsabile"
     9483 => [
       '#type' => 'view',
@@ -87,7 +95,7 @@ class ObbligoHooks {
    *
    * @var array
    */
-  private array $hideViews = [9445, 9446, 9447, 9448, 9483, 9578, 9580];
+  private array $hideViews = [9445, 9446, 9447, 9448, 9462, 9483, 9578, 9580];
 
   /**
    * Messaggi personalizzati nel caso in cui una particolare
@@ -167,7 +175,7 @@ class ObbligoHooks {
   public function preprocessViewsViewTable(&$variables): void {
     $term = Helper::getObbligoTerm();
     if ($term) {
-      if ($term->id() == 9448) {
+      if (in_array($term->id(), [9948, 9462])) {
         $this->addARANLinkToVariables($variables);
       }
     }
@@ -302,17 +310,41 @@ class ObbligoHooks {
       ];
     }
 
-    // Se il termine è 9448 = "Consulenti e collaboratori"
-    elseif ($term->id() == 9448 && $variables['view_mode'] == 'full') {
+    // Se il termine è
+    // 9448 = "Consulenti e collaboratori"
+    // 9462 = "Incarichi conferiti e autorizzati ai dipendenti (dirigenti e non dirigenti)"
+    elseif (in_array($term->id(), [9448, 9462]) && $variables['view_mode'] == 'full') {
+      $tipologia_soggetto = $term->id() == 9448 ? 'CCE' : 'DIP';
       $perla_pa_url = $config->get('perla_pa_url') ?? 'https://consulentipubblici.dfp.gov.it/?ente=DFP00017973';
+      $perla_pa_url .= '&tipologiasoggetto=' . $tipologia_soggetto;
+
+      $current_year = (int) date('Y');
+      $years = range($current_year, $current_year - 2);
+
+      $links = [];
+      foreach ($years as $year) {
+        $uri = $perla_pa_url . '&anno=' . $year;
+        $links[] = Link::fromTextAndUrl(
+          t('Collegamento con la Banca Dati del sistema Perla PA anno @year', ['@year' => $year]),
+          Url::fromUri($uri, [
+            'attributes' => [
+              'class' => ['btn', 'btn-xs', 'btn-outline', 'btn-outline-info', 'my-4'],
+              'target' => '_blank',
+              'title'  => t('Vai al Portale Perla PA in una nuova finestra'),
+            ],
+          ])
+        );
+      }
 
       $variables['content']['btn_perla_pa'] = [
-        '#type' => 'markup',
-        '#markup' => trim(sprintf(
-          '<p class="p-5 border w-75"><a class="btn btn-xs btn-primary my-4" href="%s" target="_blank" title="Vai al Portale Perla PA in una nuova finestra">Collegamento con la Banca Dati del sistema Perla PA</a></p>',
-          htmlspecialchars($perla_pa_url, ENT_QUOTES, 'UTF-8')
-        )),
-        '#weight' => 100,
+        '#type'    => 'container',
+        '#attributes' => ['class' => ['p-5', 'border', 'w-75']],
+        'links'    => [
+          '#theme' => 'item_list',
+          '#items' => $links,
+          '#attributes' => ['class' => ['btn-list']],
+        ],
+        '#weight'  => 100,
       ];
     }
 
@@ -449,7 +481,10 @@ class ObbligoHooks {
       $view_id = $variables['view']->id();
       $view_display = $variables['view']->current_display;
 
-      if ($view_id == 'amministrazione_trasparente_obblighi' && $view_display == '9448_consulenti_collaboratori') {
+      if (
+        $view_id == 'amministrazione_trasparente_obblighi' &&
+        in_array($view_display, ['9448_consulenti_collaboratori', '9462_incarichi_dipendenti'])
+      ) {
         $variables['anno'] = trim($variables['title']);
 
         $config = \Drupal::config('keryx.settings');
