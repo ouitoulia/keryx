@@ -9,8 +9,8 @@ dependencies:
   - ouitoulia:lexika
   - ouitoulia:themethla
 
-# Information added by GitHub Action packaging script on 2025-05-02
-version: '1.21.0 '
+# Information added by GitHub Action packaging script on 2025-05-03
+version: '1.22.0'
 project: 'Keryx'
-datestamp: 1746199871
-message: ' add view contratti dipendenti'
+datestamp: 1746245294
+message: ' fix version'
