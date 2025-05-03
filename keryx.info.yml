@@ -10,7 +10,7 @@ dependencies:
   - ouitoulia:themethla
 
 # Information added by GitHub Action packaging script on 2025-05-02
-version: '1.21.0'
+version: '1.21.0 '
 project: 'Keryx'
 datestamp: 1746199871
 message: ' add view contratti dipendenti'
