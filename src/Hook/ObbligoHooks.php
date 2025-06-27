@@ -106,6 +106,7 @@ class ObbligoHooks {
   private array $emptyMessages = [
     0 => ["title" => "Nessun dato", "content" => "L'istituto non possiede dati da pubblicare in merito."],
     9441 => ["title" => "Nessuna sanzione", "content" => "L'istituto non ha ricevuto sanzioni."],
+    9455 => ["title" => "Nessuna sanzione", "content" => "L'istituto non ha ricevuto sanzioni."],
     9527 => ["title" => "Nessun immobile", "content" => "L'istituto non possiede e/o detiene immobili."],
     9528 => ["title" => "Nessun canone", "content" => "L'istituto non versa o percepisce alcun canone di affitto o locazione."],
     9531 => ["title" => "Nessun rilievo", "content" => "L'istituto non ha ricevuto alcun rilievo dalla Corte dei conti."],
