@@ -110,6 +110,9 @@ class ObbligoHooks {
     9527 => ["title" => "Nessun immobile", "content" => "L'istituto non possiede e/o detiene immobili."],
     9528 => ["title" => "Nessun canone", "content" => "L'istituto non versa o percepisce alcun canone di affitto o locazione."],
     9531 => ["title" => "Nessun rilievo", "content" => "L'istituto non ha ricevuto alcun rilievo dalla Corte dei conti."],
+    9563 => ["title" => "Nessun provvedimento", "content" => "L'istituto non è stato oggetto di provvedimenti da parte di ANAC."],
+    9564 => ["title" => "Nessun atto di accertamento", "content" => "L'istituto non ha ricevuto alcun atto di accertamento."],
+    9581 => ["title" => "Nessuna commissione nominata", "content" => "Negli anni 2024 e 2025 non ci sono stati affidamenti tramite bandi di gara."],
   ];
 
   /**
