@@ -113,6 +113,8 @@ class ObbligoHooks {
     9563 => ["title" => "Nessun provvedimento", "content" => "L'istituto non è stato oggetto di provvedimenti da parte di ANAC."],
     9564 => ["title" => "Nessun atto di accertamento", "content" => "L'istituto non ha ricevuto alcun atto di accertamento."],
     9581 => ["title" => "Nessuna commissione nominata", "content" => "Negli anni 2024 e 2025 non ci sono stati affidamenti tramite bandi di gara."],
+    9585 => ["title" => "Nessun relazione o certificazione", "content" => "L'istituto non ha stipulato contratti con ditte aventi un numero superiore di 15 dipendenti soggette agli obblighi"],
+    9586 => ["title" => "Nessuna sponsorizzazione", "content" => "L'istituto non ha stipulato alcun contratto di sponsorizzazione."],
   ];
 
   /**
