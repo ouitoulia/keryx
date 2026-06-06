@@ -27,8 +27,8 @@ class ObbligoHooks {
     // Il termine è 9403 = "Atti amministrativi generali"
     9403 => [
       '#type' => 'view',
-      '#name' => 'primo_livello_novita',
-      '#display_id' => 'circolari',
+      '#name' => 'amministrazione_trasparente_obblighi',
+      '#display_id' => '9403_atti_amministrativi',
       '#arguments' => [],
     ],
     // Il termine è 9445 = "Organigramma - Illustrazione in forma semplificata"
