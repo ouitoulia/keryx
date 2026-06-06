@@ -95,7 +95,7 @@ class ObbligoHooks {
    *
    * @var array
    */
-  private array $hideViews = [9445, 9446, 9447, 9448, 9462, 9483, 9578, 9580];
+  private array $hideViews = [9403, 9445, 9446, 9447, 9448, 9462, 9483, 9578, 9580];
 
   /**
    * Messaggi personalizzati nel caso in cui una particolare

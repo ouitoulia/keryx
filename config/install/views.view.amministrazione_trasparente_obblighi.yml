@@ -28,6 +28,7 @@ dependencies:
     - taxonomy.vocabulary.tipologia_strutture
   content:
     - 'taxonomy_term:obblighi_di_pubblicazione:5be9e240-3dfa-441c-b014-6f18635156e0'
+    - 'taxonomy_term:obblighi_di_pubblicazione:c79a6f8c-88f5-4b91-b5ed-686c3ec8391e'
     - 'taxonomy_term:obblighi_di_pubblicazione:e2f96cdd-79d4-4e68-aa18-2429517eb66e'
     - 'taxonomy_term:ruoli_persona:914018e0-ab02-42f7-9e4a-2b01db615e91'
     - 'taxonomy_term:ruoli_persona:9533fe20-a536-4433-88d3-010725212b20'
@@ -538,32 +539,28 @@ display:
             offset: false
             offset_label: Scostamento
           quantity: 4
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Filtra
+          reset_button: true
+          reset_button_label: 'Resetta filtri'
+          exposed_sorts_label: 'Ordina per'
+          expose_sort_order: false
+          sort_asc_label: Asc
+          sort_desc_label: Disc
       filters:
-        status:
-          id: status
-          table: node_field_data
-          field: status
-          entity_type: node
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
-          group: 1
-          expose:
-            operator: ''
-        type:
-          id: type
-          table: node_field_data
-          field: type
+        field_obbligo_di_pubblicazione_target_id:
+          id: field_obbligo_di_pubblicazione_target_id
+          table: node__field_obbligo_di_pubblicazione
+          field: field_obbligo_di_pubblicazione_target_id
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          operator: in
+          plugin_id: taxonomy_index_tid
+          operator: or
           value:
-            circolare: circolare
-            documento: documento
+            - 9403
           group: 1
           exposed: false
           expose:
@@ -593,15 +590,184 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+          reduce_duplicates: false
+          vid: obblighi_di_pubblicazione
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            circolare: circolare
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 2
+          expose:
+            operator: ''
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: string
+          operator: contains
+          value: ''
+          group: 2
+          exposed: true
+          expose:
+            operator_id: title_op
+            label: 'Cerca atto'
+            description: "Puoi filtrare i risultati conoscendo parte del nome dell'atto. Per ricerche più complesse usa la funzione ricerca del sito."
+            use_operator: false
+            operator: title_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: title
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              ex_amministrativo: '0'
+              ex_collaboratore: '0'
+              ex_dirigente: '0'
+              ex_docente: '0'
+              ex_dsga: '0'
+              ex_tecnico: '0'
+              personale_docente: '0'
+              personale_non_docente: '0'
+              collaboratore: '0'
+              direttore_amministrativo_dsga_: '0'
+              personale_amministrativo: '0'
+              personale_tecnico: '0'
+              amministrazione_sito: '0'
+              amministratore: '0'
+              capo_redattore: '0'
+              redattore: '0'
+              dirigente_scolastico: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
       filter_groups:
         operator: AND
         groups:
-          1: AND
+          1: OR
+          2: AND
       style:
         type: table
         options:
+          grouping: {  }
           row_class: ''
           default_row_class: true
+          columns:
+            field_tipologia_documento: field_tipologia_documento
+            type: type
+            title: title
+            created: created
+            view_node: view_node
+          default: created
+          info:
+            field_tipologia_documento:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: priority-low
+            type:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: priority-low
+            title:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            created:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: priority-low
+            view_node:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: priority-low
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
       row:
         type: 'entity:node'
         options:
@@ -610,6 +776,7 @@ display:
       defaults:
         title: false
         pager: false
+        exposed_form: false
         style: false
         row: false
         fields: false
@@ -622,6 +789,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
