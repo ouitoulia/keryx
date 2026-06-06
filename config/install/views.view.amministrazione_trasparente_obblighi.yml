@@ -666,7 +666,7 @@ display:
           expose:
             operator_id: title_op
             label: 'Cerca atto'
-            description: "Puoi filtrare i risultati conoscendo parte del nome dell'atto. Per ricerche più complesse usa la funzione ricerca del sito."
+            description: "Puoi filtrare i risultati conoscendo parte del nome dell'atto. Per ricerche più complesse usa la funzione cerca del sito."
             use_operator: false
             operator: title_op
             operator_limit_selection: false
