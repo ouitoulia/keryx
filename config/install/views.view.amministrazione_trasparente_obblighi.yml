@@ -1,3 +1,4 @@
+uuid: ed9fb138-9b09-4950-b95d-bae015128c65
 langcode: it
 status: true
 dependencies:
@@ -539,16 +540,6 @@ display:
             offset: false
             offset_label: Scostamento
           quantity: 4
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Filtra
-          reset_button: true
-          reset_button_label: 'Resetta filtri'
-          exposed_sorts_label: 'Ordina per'
-          expose_sort_order: false
-          sort_asc_label: Asc
-          sort_desc_label: Disc
       filters:
         field_obbligo_di_pubblicazione_target_id:
           id: field_obbligo_di_pubblicazione_target_id
@@ -590,7 +581,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          reduce_duplicates: false
+          reduce_duplicates: true
           vid: obblighi_di_pubblicazione
           type: textfield
           hierarchy: false
@@ -666,7 +657,7 @@ display:
           expose:
             operator_id: title_op
             label: 'Cerca atto'
-            description: "Puoi filtrare i risultati conoscendo parte del nome dell'atto. Per ricerche più complesse usa la funzione cerca del sito."
+            description: "Puoi filtrare i risultati conoscendo parte del nome dell'atto. Per ricerche più complesse usa la funzione ricerca del sito."
             use_operator: false
             operator: title_op
             operator_limit_selection: false
@@ -733,14 +724,14 @@ display:
               align: ''
               separator: ''
               empty_column: false
-              responsive: priority-low
+              responsive: ''
             type:
               sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
-              responsive: priority-low
+              responsive: ''
             title:
               sortable: false
               default_sort_order: asc
@@ -754,14 +745,14 @@ display:
               align: ''
               separator: ''
               empty_column: false
-              responsive: priority-low
+              responsive: ''
             view_node:
               sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
-              responsive: priority-low
+              responsive: ''
           override: true
           sticky: false
           summary: ''
@@ -776,7 +767,6 @@ display:
       defaults:
         title: false
         pager: false
-        exposed_form: false
         style: false
         row: false
         fields: false
