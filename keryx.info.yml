@@ -10,7 +10,7 @@ dependencies:
   - ouitoulia:themethla
 
 # Information added by GitHub Action packaging script on 2026-06-06
-version: '1.26.3'
+version: '1.26.4'
 project: 'Keryx'
-datestamp: 1780753076
+datestamp: 1780754575
 message: ' atti amministrativi generali secondo schema ANAC 168 Aprile 2026'
