@@ -9,8 +9,8 @@ dependencies:
   - ouitoulia:lexika
   - ouitoulia:themethla
 
-# Information added by GitHub Action packaging script on 2026-06-06
-version: '1.26.6'
+# Information added by GitHub Action packaging script on 2026-06-07
+version: '1.26.7'
 project: 'Keryx'
-datestamp: 1780755493
+datestamp: 1780809694
 message: ' atti amministrativi generali secondo schema ANAC 168 Aprile 2026'
