@@ -181,7 +181,7 @@ class ObbligoHooks {
   public function preprocessViewsViewTable(&$variables): void {
     $term = Helper::getObbligoTerm();
     if ($term) {
-      if (in_array($term->id(), [9948, 9462])) {
+      if (in_array((int) $term->id(), [9448, 9462])) {
         $this->addARANLinkToVariables($variables);
       }
     }
