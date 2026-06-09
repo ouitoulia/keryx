@@ -97,10 +97,7 @@ process:
     plugin: skip_on_empty
     source: persona_responsabile
     method: process
-  status:
-    plugin: default_value
-    source: published
-    default_value: 1
+  status: published
 destination:
   plugin: 'entity:taxonomy_term'
 migration_dependencies: {  }
