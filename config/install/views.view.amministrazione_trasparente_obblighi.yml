@@ -676,7 +676,7 @@ display:
           plugin_id: string
           operator: contains
           value: ''
-          group: 2
+          group: 3
           exposed: true
           expose:
             operator_id: title_op
@@ -733,7 +733,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
-          group: 2
+          group: 3
           exposed: true
           expose:
             operator_id: field_tipologia_documento_target_id_op
@@ -791,6 +791,7 @@ display:
         groups:
           1: OR
           2: AND
+          3: OR
       style:
         type: table
         options:
@@ -2881,6 +2882,38 @@ display:
             offset: false
             offset_label: Scostamento
       empty: {  }
+      sorts:
+        nid:
+          id: nid
+          table: node_field_data
+          field: nid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: nid
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+          granularity: second
       filters:
         status:
           id: status
@@ -2905,6 +2938,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
+            documento: documento
             struttura_organizzativa: struttura_organizzativa
           group: 1
           exposed: false
@@ -2946,7 +2980,7 @@ display:
           operator: or
           value:
             1305: 1305
-          group: 1
+          group: 2
           exposed: false
           expose:
             operator_id: ''
@@ -2981,10 +3015,52 @@ display:
           hierarchy: false
           limit: true
           error_message: true
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: string
+          operator: allwords
+          value: 'dichiarazione sostitutiva certificazione'
+          group: 2
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
       filter_groups:
         operator: AND
         groups:
           1: AND
+          2: OR
       style:
         type: default
         options:
@@ -3002,6 +3078,7 @@ display:
         pager: false
         style: false
         row: false
+        sorts: false
         filters: false
         filter_groups: false
       display_description: "Visualizza i recapiti di del responsabile delle dichiarazioni sostitutive e acquisizione d'ufficio dei dati"
