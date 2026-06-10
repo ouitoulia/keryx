@@ -104,7 +104,7 @@ class ObbligoHooks {
    * @var array
    */
   private array $emptyMessages = [
-    0 => ["title" => "Nessun dato", "content" => "L'istituto non possiede dati da pubblicare in merito."],
+    0 => ["title" => "Nessun dato da pubblicare", "content" => "L'istituto non possiede dati e/o informazioni da pubblicare in questa voce."],
     9441 => ["title" => "Nessuna sanzione", "content" => "L'istituto non ha ricevuto sanzioni."],
     9455 => ["title" => "Nessuna sanzione", "content" => "L'istituto non ha ricevuto sanzioni."],
     9527 => ["title" => "Nessun immobile", "content" => "L'istituto non possiede e/o detiene immobili."],
@@ -112,9 +112,12 @@ class ObbligoHooks {
     9531 => ["title" => "Nessun rilievo", "content" => "L'istituto non ha ricevuto alcun rilievo dalla Corte dei conti."],
     9563 => ["title" => "Nessun provvedimento", "content" => "L'istituto non è stato oggetto di provvedimenti da parte di ANAC."],
     9564 => ["title" => "Nessun atto di accertamento", "content" => "L'istituto non ha ricevuto alcun atto di accertamento."],
-    9581 => ["title" => "Nessuna commissione nominata", "content" => "Negli anni 2024 e 2025 non ci sono stati affidamenti tramite bandi di gara."],
+    9576 => ["title" => "L'istituto non è qualificato", "content" => "Questa amministrazione non è qualificata ANAC per affidamenti di forniture di importo superiore a € 140.000+ IVA e lavori di importo superiore a € 150.000+ IVA."],
+    9581 => ["title" => "Nessuna commissione nominata", "content" => "In questa Istituzione Scolastica non sono state nominate commissioni giudicatrici, in quanto non sono state indette procedure di affidamento per le quali la normativa vigente preveda la costituzione di tale organo."],
+    9582 => ["title" => "Nessun relazione o certificazione", "content" => "L'istituto non ha stipulato contratti con ditte aventi un numero superiore di 50 dipendenti soggette agli obblighi"],
+    9584 => ["title" => "Nessun collegio nominato", "content" => "L'amministrazione non ha in corso procedure di affidamento o contratti in esecuzione che richiedano la costituzione del Collegio Consultivo Tecnico ai sensi della normativa vigente."],
     9585 => ["title" => "Nessun relazione o certificazione", "content" => "L'istituto non ha stipulato contratti con ditte aventi un numero superiore di 15 dipendenti soggette agli obblighi"],
-    9586 => ["title" => "Nessuna sponsorizzazione", "content" => "L'istituto non ha stipulato alcun contratto di sponsorizzazione."],
+    9586 => ["title" => "Nessuna sponsorizzazione", "content" => "In questa Istituzione Scolastica non sono stati stipulati contratti di sponsorizzazione, in quanto non sono state attivate procedure o accordi che prevedano la promozione di marchi o nomi di soggetti privati a fronte di contributi o prestazioni."],
   ];
 
   /**
