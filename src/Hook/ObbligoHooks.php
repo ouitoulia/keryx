@@ -112,6 +112,7 @@ class ObbligoHooks {
     9531 => ["title" => "Nessun rilievo", "content" => "L'istituto non ha ricevuto alcun rilievo dalla Corte dei conti."],
     9563 => ["title" => "Nessun provvedimento", "content" => "L'istituto non è stato oggetto di provvedimenti da parte di ANAC."],
     9564 => ["title" => "Nessun atto di accertamento", "content" => "L'istituto non ha ricevuto alcun atto di accertamento."],
+    9574 => ["title" => "Nessun dato da pubblicare", "content" => "Questa amministrazione non ha pubblicato manifestazioni di interesse degli operatori economici in ordine ai lavori di possibile completamento di opere incompiute nonché alla gestione delle stesse."],
     9576 => ["title" => "L'istituto non è qualificato", "content" => "Questa amministrazione non è qualificata ANAC per affidamenti di forniture di importo superiore a € 140.000+ IVA e lavori di importo superiore a € 150.000+ IVA."],
     9581 => ["title" => "Nessuna commissione nominata", "content" => "In questa Istituzione Scolastica non sono state nominate commissioni giudicatrici, in quanto non sono state indette procedure di affidamento per le quali la normativa vigente preveda la costituzione di tale organo."],
     9582 => ["title" => "Nessun relazione o certificazione", "content" => "L'istituto non ha stipulato contratti con ditte aventi un numero superiore di 50 dipendenti soggette agli obblighi"],
