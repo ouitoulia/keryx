@@ -107,10 +107,7 @@ process:
     -
       plugin: default_value
       default_value: bootstrap_italia_2
-  status:
-    plugin: default_value
-    source: published
-    default_value: 1
+  status: published
 destination:
   plugin: 'entity:taxonomy_term'
 migration_dependencies:
