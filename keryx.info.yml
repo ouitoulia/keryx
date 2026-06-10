@@ -9,8 +9,8 @@ dependencies:
   - ouitoulia:lexika
   - ouitoulia:themethla
 
-# Information added by GitHub Action packaging script on 2026-06-09
-version: '1.26.9'
+# Information added by GitHub Action packaging script on 2026-06-10
+version: '1.26.10'
 project: 'Keryx'
-datestamp: 1781017016
-message: ' declare status in obbligo'
+datestamp: 1781066260
+message: ' update status in migration'
