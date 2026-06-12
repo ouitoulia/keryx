@@ -9,8 +9,8 @@ dependencies:
   - ouitoulia:lexika
   - ouitoulia:themethla
 
-# Information added by GitHub Action packaging script on 2026-06-10
-version: '1.26.14'
+# Information added by GitHub Action packaging script on 2026-06-12
+version: '1.26.15'
 project: 'Keryx'
-datestamp: 1781107134
+datestamp: 1781272545
 message: ' compliance delibera ANAC Aprile 2026'
