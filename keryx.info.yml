@@ -10,7 +10,7 @@ dependencies:
   - ouitoulia:themethla
 
 # Information added by GitHub Action packaging script on 2026-11-21
-version: '1.27.0'
+version: '1.27.1'
 project: 'Keryx'
-datestamp: 1795269757
+datestamp: 1795272234
 message: ' up deps for drupal 11'
