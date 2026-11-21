@@ -9,8 +9,8 @@ dependencies:
   - ouitoulia:lexika
   - ouitoulia:themethla
 
-# Information added by GitHub Action packaging script on 2026-06-12
-version: '1.26.15'
+# Information added by GitHub Action packaging script on 2026-11-21
+version: '1.27.0'
 project: 'Keryx'
-datestamp: 1781272545
-message: ' compliance delibera ANAC Aprile 2026'
+datestamp: 1795269757
+message: ' up deps for drupal 11'
